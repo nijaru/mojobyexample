@@ -5,6 +5,8 @@
 import { readdirSync, readFileSync, mkdirSync, writeFileSync, cpSync } from "node:fs";
 import { join } from "node:path";
 
+const SITE = "https://mojobyexample.com";
+
 const ROOT = import.meta.dir;
 const EXAMPLES_DIR = join(ROOT, "examples");
 const STATIC_DIR = join(ROOT, "static");
@@ -144,7 +146,11 @@ function renderMarkdown(md: string): string {
   return html;
 }
 
-type Example = { slug: string; num: string; title: string; body: string };
+type Example = { slug: string; num: string; title: string; description: string; body: string };
+
+function stripMarkdown(s: string): string {
+  return s.replace(/[`*]/g, "").replace(/\s+/g, " ").trim();
+}
 
 function loadExamples(): Example[] {
   return readdirSync(EXAMPLES_DIR)
@@ -153,10 +159,15 @@ function loadExamples(): Example[] {
     .map((file) => {
       const md = readFileSync(join(EXAMPLES_DIR, file), "utf8");
       const title = md.match(/^# (.*)$/m)![1];
+      const firstPara = md.match(/^# .*\n\n([^\n]+)/)?.[1] ?? "";
+      const description = stripMarkdown(firstPara).slice(0, 160);
       const m = file.match(/^(\d+)-(.*)\.md$/)!;
-      return { num: m[1], slug: m[2], title, body: renderMarkdown(md) };
+      return { num: m[1], slug: m[2], title, description, body: renderMarkdown(md) };
     });
 }
+
+const DEFAULT_DESCRIPTION =
+  "Learn the Mojo programming language through annotated example programs. Short, runnable, and verified against a real Mojo toolchain.";
 
 const DISCLAIMER = `<footer>
 <p>Mojo by Example is an independent community project and is not affiliated with, sponsored by, or endorsed by Modular Inc.</p>
@@ -181,14 +192,26 @@ ${items}
 </aside>`;
 }
 
-function page(examples: Example[], active: string | null, title: string, body: string): string {
+function page(
+  examples: Example[],
+  active: string | null,
+  title: string,
+  description: string,
+  path: string,
+  body: string,
+): string {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
-<meta name="description" content="Learn the Mojo programming language through annotated example programs. An independent community tutorial.">
+<meta name="description" content="${escapeHtml(description)}">
+<link rel="canonical" href="${SITE}${path}">
+<meta property="og:title" content="${escapeHtml(title)}">
+<meta property="og:description" content="${escapeHtml(description)}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${SITE}${path}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="/style.css">
 </head>
@@ -220,7 +243,14 @@ function examplePage(examples: Example[], e: Example, i: number): string {
         : ""
     }</div>`;
   }
-  return page(examples, e.slug, `${e.title} — Mojo by Example`, e.body + pager);
+  return page(
+    examples,
+    e.slug,
+    `${e.title} — Mojo by Example`,
+    e.description || DEFAULT_DESCRIPTION,
+    `/${e.slug}/`,
+    e.body + pager,
+  );
 }
 
 function homePage(examples: Example[]): string {
@@ -232,7 +262,7 @@ function homePage(examples: Example[]): string {
 <p class="tagline">Learn the Mojo programming language through annotated example programs. Short, runnable, and verified against a real Mojo toolchain.</p>
 </div>
 <p>Mojo is a systems programming language built for high-performance code — Python-like ergonomics with the control of a systems language: ownership you can reason about, compile-time metaprogramming, SIMD as a first-class type, and no hidden runtime.</p>
-<p>Each example below is a complete, runnable program. The code on the left of each block does the talking; run <code>mojo run</code> yourself to follow along.</p>
+<p>Each example below is a complete, runnable program. The code does the talking; run <code>mojo run</code> yourself to follow along.</p>
 <h2>Examples</h2>
 <div class="toc">
 ${toc}
@@ -243,7 +273,7 @@ ${toc}
 <li><a href="https://docs.modular.com/mojo/stdlib/">Mojo standard library reference</a></li>
 <li><a href="https://github.com/nijaru/mojobyexample">Contribute an example on GitHub</a></li>
 </ul>`;
-  return page(examples, null, "Mojo by Example", body);
+  return page(examples, null, "Mojo by Example", DEFAULT_DESCRIPTION, "/", body);
 }
 
 const examples = loadExamples();
@@ -256,5 +286,11 @@ for (let i = 0; i < examples.length; i++) {
   writeFileSync(join(dir, "index.html"), examplePage(examples, examples[i], i));
 }
 cpSync(STATIC_DIR, DIST, { recursive: true });
+
+const urls = ["/", ...examples.map((e) => `/${e.slug}/`)];
+writeFileSync(
+  join(DIST, "sitemap.xml"),
+  `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map((p) => `  <url><loc>${SITE}${p}</loc></url>`).join("\n")}\n</urlset>\n`,
+);
 
 console.log(`built ${examples.length} example pages into dist/`);

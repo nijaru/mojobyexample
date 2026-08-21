@@ -9,7 +9,7 @@
   --border-strong: rgba(255, 255, 255, 0.16);
   --text: #ececee;
   --text-muted: #9b9ba3;
-  --text-faint: #63636c;
+  --text-faint: #7e7e88;
   --accent: #ff8a3d;
   --accent-dim: rgba(255, 138, 61, 0.14);
   --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
@@ -23,6 +23,18 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }
 
 body {
