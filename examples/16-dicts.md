@@ -29,3 +29,5 @@ alan 41
 ada is here
 36 37
 ```
+
+Keys must be both hashable and equatable, and iteration order is not guaranteed — don't rely on insertion order.

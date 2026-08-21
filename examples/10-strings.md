@@ -1,11 +1,15 @@
 # Strings
 
-Strings are UTF-8. Byte length and character count are different things, indexing is byte-level and explicit, and interpolation uses t-strings.
+Strings are UTF-8. Byte length and character count are different things, character access is always explicit, and interpolation uses t-strings.
 
 ```mojo
 def main():
     var s = "Hello, Mojo"
     print(s.byte_length(), s.count_codepoints())
+
+    # é is two bytes but one codepoint
+    var h = "héllo"
+    print(h.byte_length(), h.count_codepoints())
 
     var excited = s + "!"
     excited += "!"
@@ -26,6 +30,7 @@ def main():
 
 ```text
 11 11
+6 5
 Hello, Mojo!!
 Ada is 36 years old
 pi is about 3.14
@@ -36,4 +41,4 @@ pi is about 3.14
 111
 ```
 
-Byte access uses a keyword index — `s[byte=0]` returns a zero-copy slice; wrap it in `String(...)` to own it. There is no `s[0]`: with UTF-8, "the first character" is always a question about bytes versus codepoints, and Mojo makes you answer it.
+`s[i]` does not exist. Character access uses keyword indices — `s[byte=i]`, `s[codepoint=i]`, and `s[grapheme=i]` — each returning a zero-copy view at the granularity you choose; wrap one in `String(...)` to own it. With UTF-8, "the first character" depends on what you mean, and Mojo makes you answer.

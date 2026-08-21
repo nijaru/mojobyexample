@@ -1,6 +1,6 @@
 # Traits
 
-A trait defines a set of required methods. Structs declare conformance and implement them, and generic functions dispatch through traits statically — no virtual calls unless you ask for them.
+A trait defines a set of required methods. Structs declare conformance and implement them, and generic functions dispatch through traits statically — Mojo has no runtime (virtual) dispatch.
 
 ```mojo
 trait Shape:
@@ -21,8 +21,7 @@ struct Square(Shape, Copyable, Movable):
         return self.side * self.side
 
 # T: Shape means "any type that conforms to Shape"
-# (List storage needs Movable elements, iteration needs Copyable)
-def total_area[T: Shape & Copyable & Movable](shapes: List[T]) -> Float64:
+def total_area[T: Shape & Movable](shapes: List[T]) -> Float64:
     var total = 0.0
     for s in shapes:
         total += s.area()

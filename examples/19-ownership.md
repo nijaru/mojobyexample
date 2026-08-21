@@ -33,4 +33,4 @@ mojo!
 [mojo!]
 ```
 
-This is Mojo's alternative to garbage collection: borrows are checked at compile time, copies never happen silently, and destruction is deterministic.
+This is Mojo's alternative to garbage collection: borrows are checked at compile time, expensive values never copy implicitly (cheap implicitly-copyable types do), and destruction is deterministic.

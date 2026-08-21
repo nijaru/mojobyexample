@@ -1,6 +1,6 @@
 # Methods
 
-Structs can define methods that take `self` by value, immutably (the default), or mutably with `mut self`. They can also carry compile-time associated constants and static methods.
+Structs can define methods that take `self` by value (`var self`), immutably (plain `self`, the default), or mutably (`mut self`). They can also carry compile-time associated constants and static methods.
 
 ```mojo
 struct Counter:

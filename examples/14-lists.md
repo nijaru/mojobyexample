@@ -29,4 +29,4 @@ def main():
 4 5
 ```
 
-Out-of-range and negative indices are rejected at compile time when they are literals — `nums[-1]` does not wrap around; use `nums[len(nums) - 1]`.
+Negative literal indices are rejected at compile time — `nums[-1]` does not wrap around; use `nums[len(nums) - 1]`. Out-of-range indices fail at run time with a bounds check.

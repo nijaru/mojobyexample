@@ -21,4 +21,4 @@ def main():
 2 3.0 hello world
 ```
 
-A variable assigned only inside a branch must be declared with a type before the branch — the compiler will not infer a declaration from a bare assignment.
+Bare assignments create *implicit declarations*, which are deprecated — always introduce variables with `var`. A declaration without an initializer (`var x: Int`) can be assigned later, including inside a branch.

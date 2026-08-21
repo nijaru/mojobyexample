@@ -18,3 +18,5 @@ def main():
 3
 (1, 2) 3
 ```
+
+Tuples are fixed-size and anonymous — when the fields have meaning, define a struct instead.

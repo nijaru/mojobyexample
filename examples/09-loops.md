@@ -39,3 +39,5 @@ letter b
 letter c
 stopped at 3
 ```
+
+`for` always iterates a collection or a `range` — there is no C-style three-part `for`.

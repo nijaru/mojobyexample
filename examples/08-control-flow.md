@@ -1,6 +1,6 @@
 # Control Flow
 
-Conditions are `Bool` values — no truthiness. Combine them with `and`, `or`, and `not`, and branch with `if`, `elif`, and `else`.
+Branch with `if`, `elif`, and `else`. Conditions use Python-style truthiness — zero numbers and empty strings are falsy — though explicit comparisons read best. Combine conditions with `and`, `or`, and `not`.
 
 ```mojo
 def sign(n: Int) -> String:
@@ -24,3 +24,5 @@ def main():
 negative zero positive
 sunny but cold
 ```
+
+`and` and `or` short-circuit: the right side is only evaluated when the left side doesn't already decide the result.

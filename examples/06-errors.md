@@ -22,4 +22,4 @@ ok
 caught: age cannot be negative
 ```
 
-`raises` can also name a specific error type — `def parse(s: String) raises Int -> Int` — so error channels are part of the type signature.
+`raises` can also name a specific error type — `def parse(s: String) raises Int -> Int` — so error channels are part of the type signature. With a typed raise, `except e` binds the raised value itself.

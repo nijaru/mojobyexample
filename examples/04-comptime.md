@@ -10,7 +10,7 @@ comptime SIZE = 4
 comptime Number = Float64
 
 def describe() -> String:
-    # The false branch is never even compiled
+    # The false branch generates no machine code (it is still parsed and type-checked)
     comptime if SIZE > 2:
         return "big"
     else:
