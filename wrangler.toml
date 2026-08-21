@@ -1,0 +1,5 @@
+# Cloudflare Pages configuration.
+# Either connect the repo in the Pages dashboard (build command: `bun run build`,
+# output directory: `dist`) or deploy directly with `npx wrangler pages deploy dist`.
+name = "mojobyexample"
+pages_build_output_dir = "dist"

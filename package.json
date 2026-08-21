@@ -1,0 +1,10 @@
+{
+  "name": "mojobyexample",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An independent community tutorial: learn the Mojo programming language through annotated example programs.",
+  "scripts": {
+    "build": "bun build.ts",
+    "verify": "bun verify.ts"
+  }
+}
