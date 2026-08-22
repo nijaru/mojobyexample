@@ -1,6 +1,6 @@
 # Control Flow
 
-Branch with `if`, `elif`, and `else`. Conditions use Python-style truthiness — zero numbers and empty strings are falsy — though explicit comparisons read best. Combine conditions with `and`, `or`, and `not`.
+Branch with `if`, `elif`, and `else`. Conditions use Python-style truthiness for numbers and strings — zero and empty are falsy; collections don't support truthiness — though explicit comparisons read best. Combine conditions with `and`, `or`, and `not`.
 
 ```mojo
 def sign(n: Int) -> String:

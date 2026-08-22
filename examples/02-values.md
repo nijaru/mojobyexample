@@ -37,3 +37,17 @@ mojo 🔥
 ```
 
 Literals are polymorphic: `3.14` adapts to whatever float type the context needs, so you rarely annotate small values by hand.
+
+Float→int conversion is a method, not a constructor — and it truncates:
+
+```mojo
+def main():
+    var x: Float64 = 3.99
+    print(x.cast[DType.int]())
+```
+
+```text
+3
+```
+
+Out-of-range literals into fixed-width ints wrap silently: a `UInt8` assigned 300 holds 44.

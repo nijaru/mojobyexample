@@ -20,4 +20,4 @@ def main():
 5.0 2.718281828459045
 ```
 
-Every `.mojo` file is itself a module: `import my_utils` loads `my_utils.mojo` from the same directory, and its top-level functions become `my_utils.name`.
+Every `.mojo` file is itself a module: `import my_utils` loads `my_utils.mojo` from the same directory, and its top-level functions become `my_utils.name`. Watch argument types: `sqrt(17)` computes an integer square root (4) — pass `17.0` for the float result.

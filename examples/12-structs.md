@@ -22,7 +22,7 @@ def main():
     print(p)
     print(p.magnitude())
 
-    # Structs have value semantics; copies are independent
+    # Value semantics: copies are independent (equality needs Equatable, below)
     var q = p.copy()
     q.x = 0.0
     print(p, q)

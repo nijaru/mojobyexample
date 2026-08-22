@@ -270,7 +270,7 @@ ${toc}
 <h2>Going further</h2>
 <ul>
 <li><a href="https://docs.modular.com/mojo/">Official Mojo documentation</a></li>
-<li><a href="https://docs.modular.com/mojo/stdlib/">Mojo standard library reference</a></li>
+<li><a href="https://docs.modular.com/mojo/std/">Mojo standard library reference</a></li>
 <li><a href="https://github.com/nijaru/mojobyexample">Contribute an example on GitHub</a></li>
 </ul>`;
   return page(examples, null, "Mojo by Example", DEFAULT_DESCRIPTION, "/", body);

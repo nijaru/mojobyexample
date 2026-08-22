@@ -33,4 +33,4 @@ mojo!
 [mojo!]
 ```
 
-This is Mojo's alternative to garbage collection: borrows are checked at compile time, expensive values never copy implicitly (cheap implicitly-copyable types do), and destruction is deterministic.
+This is Mojo's alternative to garbage collection: borrows are checked at compile time, and destruction is deterministic. Copies are the exception, not the rule: built-in scalars are `ImplicitlyCopyable` and copy freely, but your own structs are not — even with `Copyable` in the trait list, pass them with `^`, copy explicitly with `.copy()`, or declare `ImplicitlyCopyable` to opt in.

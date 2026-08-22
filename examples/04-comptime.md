@@ -31,4 +31,4 @@ def main():
 6 1.5 big
 ```
 
-Because `SIZE` is known at compile time, the loop bounds, the assertion, and the `comptime if` are all resolved before the program ever runs.
+Because `SIZE` is known at compile time, the loop bounds, the assertion, and the `comptime if` are all resolved before the program ever runs. One trap: assigning to a constant's name inside a function doesn't mutate it — bare assignment declares a new runtime variable that shadows it.

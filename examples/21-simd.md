@@ -47,4 +47,4 @@ def main():
 [2.0, 2.0, 2.0, 2.0]
 [1, 2, 3, 4]
 ```
-The size parameter is a compile-time value, so the compiler picks the right vector instructions for your target — and `SIMD` composes with `comptime` and generics to build portable, tuned kernels.
+The size parameter is a compile-time value, so the compiler picks the right vector instructions for your target — and `SIMD` composes with `comptime` and generics to build portable, tuned kernels. Lane indexing is not bounds-checked: `v[4]` on a 4-lane vector returns garbage rather than failing, so keep lane indices within the width.

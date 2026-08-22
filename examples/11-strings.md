@@ -60,4 +60,4 @@ def main():
 True
 2 a+b+c
 ```
-`s[i]` does not exist. Character access uses keyword indices — `s[byte=i]`, `s[codepoint=i]`, and `s[grapheme=i]` — each returning a zero-copy view at the granularity you choose; wrap one in `String(...)` to own it. With UTF-8, "the first character" depends on what you mean, and Mojo makes you answer.
+`s[i]` does not exist. Character access uses keyword indices — `s[byte=i]`, `s[codepoint=i]`, and `s[grapheme=i]` — which choose the addressing unit. The index must land on a boundary of that unit, and the view you get back is always a character; wrap one in `String(...)` to own it. With UTF-8, "the first character" depends on what you mean, and Mojo makes you answer.
