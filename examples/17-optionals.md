@@ -25,4 +25,4 @@ none
 -1
 ```
 
-`.value()` on an empty Optional raises, so check first — `if x` and conditional expressions both work, and `Optional` never silently substitutes a default.
+`.value()` on an empty Optional does not raise a catchable error — it aborts the program. Check first, with `if x` or a conditional expression.

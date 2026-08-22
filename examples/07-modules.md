@@ -1,6 +1,6 @@
 # Modules
 
-Code lives in modules, and `import` brings declarations into scope. The standard library is rooted at `std` — `from std.math import sqrt` pulls in one function, `import std.math` keeps the whole path.
+Code lives in modules, and `import` brings declarations into scope. The standard library is rooted at `std` — `from std.math import sqrt` pulls in named functions, `import std.math` keeps the whole path.
 
 ```mojo
 from std.math import sqrt, floor

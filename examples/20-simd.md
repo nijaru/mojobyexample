@@ -1,6 +1,6 @@
 # SIMD
 
-`SIMD` is a first-class type: a fixed-width vector of lanes that hardware instructions operate on together. Writing element-wise math over `SIMD` is how you get Mojo code to hit machine speed.
+`SIMD` is a first-class type: a fixed-width vector of lanes that hardware instructions operate on together. Element-wise math over `SIMD` is a key way to get Mojo code to machine speed.
 
 ```mojo
 from std.math import max
