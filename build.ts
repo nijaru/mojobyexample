@@ -7,6 +7,9 @@ import { join } from "node:path";
 
 const SITE = "https://mojobyexample.com";
 
+// Bump when examples have been re-verified against a new toolchain.
+const MOJO_VERSION = "1.0";
+
 const ROOT = import.meta.dir;
 const EXAMPLES_DIR = join(ROOT, "examples");
 const STATIC_DIR = join(ROOT, "static");
@@ -170,7 +173,7 @@ const DEFAULT_DESCRIPTION =
   "Learn the Mojo programming language through annotated example programs. Short, runnable, and verified against a real Mojo toolchain.";
 
 const DISCLAIMER = `<footer>
-<p>Mojo by Example is an independent community project and is not affiliated with, sponsored by, or endorsed by Modular Inc.</p>
+<p>Examples verified against Mojo ${MOJO_VERSION}. Mojo by Example is an independent community project and is not affiliated with, sponsored by, or endorsed by Modular Inc.</p>
 <p>Mojo is a trademark of Modular Inc. Site content is MIT-licensed; <a href="https://github.com/nijaru/mojobyexample">source on GitHub</a>.</p>
 </footer>`;
 
@@ -259,7 +262,7 @@ function homePage(examples: Example[]): string {
     .join("\n");
   const body = `<div class="hero">
 <h1>Mojo by Example</h1>
-<p class="tagline">Learn the Mojo programming language through annotated example programs. Short, runnable, and verified against a real Mojo toolchain.</p>
+<p class="tagline">Learn the Mojo programming language through annotated example programs. Short, runnable, and verified against a real Mojo toolchain. Covers Mojo ${MOJO_VERSION} — nothing here teaches pre-1.0 syntax.</p>
 </div>
 <p>Mojo is a systems programming language built for high-performance code — Python-like ergonomics with the control of a systems language: ownership you can reason about, compile-time metaprogramming, SIMD as a first-class type, and no hidden runtime.</p>
 <p>Each example below is a complete, runnable program. The code does the talking; run <code>mojo run</code> yourself to follow along.</p>

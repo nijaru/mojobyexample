@@ -29,8 +29,11 @@ bun run build      # generate dist/
 bun x serve dist   # or any static file server, to preview
 ```
 
-Examples are only verified against the Mojo version this machine has installed
-(`mojo --version`). When Mojo changes, run `bun run verify` and fix what broke.
+The examples cover **Mojo 1.0** and deliberately exclude pre-1.0 syntax
+(`fn`, `alias`, `owned`, `@parameter`, …), which was removed in 1.0. They are
+only verified against the Mojo version this machine has installed
+(`mojo --version`). When Mojo changes, run `bun run verify`, fix what broke,
+and bump `MOJO_VERSION` in `build.ts`.
 
 ## Adding an example
 
