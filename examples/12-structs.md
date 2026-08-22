@@ -34,4 +34,24 @@ def main():
 (3.0, 4.0) (0.0, 4.0)
 ```
 
+Conform to `Equatable` and define `__eq__` to compare structs by field value:
+
+```mojo
+@fieldwise_init
+struct Point(Equatable, Copyable, Movable):
+    var x: Int
+    var y: Int
+
+    def __eq__(self, other: Self) -> Bool:
+        return self.x == other.x and self.y == other.y
+
+def main():
+    print(Point(x=1, y=2) == Point(x=1, y=2))
+    print(Point(x=1, y=2) != Point(x=3, y=4))
+```
+
+```text
+True
+True
+```
 The trait list after the name declares what the struct can do: `Copyable` and `Movable` control copying and moving, and `Writable` enables printing.

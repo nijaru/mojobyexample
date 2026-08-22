@@ -5,7 +5,7 @@ Every new variable is introduced with `var`. After that, it can be reassigned fr
 ```mojo
 def main():
     var x = 1
-    x = 2  # reassignment needs no keyword
+    x += 1  # reassignment needs no keyword
 
     # An explicit type is optional
     var y: Float64 = 2.5

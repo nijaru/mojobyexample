@@ -29,4 +29,21 @@ def main():
 4 5
 ```
 
+pop() removes and returns the last element (or one at an index), and insert() adds at a position:
+
+```mojo
+def main():
+    var nums: List[Int] = [10, 20, 30, 40]
+
+    var last = nums.pop()
+    print(last, nums)
+
+    nums.insert(1, 15)
+    print(nums)
+```
+
+```text
+40 [10, 20, 30]
+[10, 15, 20, 30]
+```
 Negative literal indices are rejected at compile time — `nums[-1]` does not wrap around; use `nums[len(nums) - 1]`. Out-of-range indices fail at run time with a bounds check.

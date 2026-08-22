@@ -11,12 +11,13 @@ example programs — in the spirit of gobyexample.com.
 ## Structure
 
 - `examples/` — one Markdown file per example. Numbered filenames define the
-  site order. Each file contains prose, one ` ```mojo ` code block, and one
-  ` ```text ` block with the program's exact output.
+  site order. Each file contains prose and one or more ` ```mojo ` code
+  blocks, each followed by a ` ```text ` block with that program's exact
+  output.
 - `build.ts` — zero-dependency Bun script that renders the examples into a
   static site in `dist/` (includes a small Mojo syntax highlighter).
-- `verify.ts` — extracts each example's code, runs it with `mojo run`, and
-  checks the output against the ` ```text ` block.
+- `verify.ts` — extracts every code/output pair, runs each program with
+  `mojo run`, and checks the output against the paired ` ```text ` block.
 - `static/` — stylesheet and favicon copied into `dist/`.
 
 ## Development

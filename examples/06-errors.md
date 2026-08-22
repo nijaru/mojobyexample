@@ -22,4 +22,25 @@ ok
 caught: age cannot be negative
 ```
 
+`raises` can name the error type; `raise` then sends any value of that type, and `except e` binds it:
+
+```mojo
+def parse(s: String) raises Int -> Int:
+    if s == "bad":
+        raise 42
+    return 1
+
+def main() raises:
+    print(parse("ok"))
+
+    try:
+        _ = parse("bad")
+    except e:
+        print("code", e)
+```
+
+```text
+1
+code 42
+```
 `raises` can also name a specific error type — `def parse(s: String) raises Int -> Int` — so error channels are part of the type signature. With a typed raise, `except e` binds the raised value itself.

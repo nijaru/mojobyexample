@@ -40,4 +40,23 @@ letter c
 stopped at 3
 ```
 
+Ranges accept start and step arguments, and `enumerate` yields an index alongside each item:
+
+```mojo
+def main():
+    for i in range(2, 10, 3):
+        print(i)
+
+    var letters = ["a", "b"]
+    for i, letter in enumerate(letters):
+        print(i, letter)
+```
+
+```text
+2
+5
+8
+0 a
+1 b
+```
 `for` always iterates a collection or a `range` — there is no C-style three-part `for`.

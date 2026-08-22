@@ -30,4 +30,19 @@ Howdy, World!
 3.5
 ```
 
+Arguments can also be passed by name, in any order:
+
+```mojo
+def greet(name: String, greeting: String = "Hello") -> String:
+    return greeting + ", " + name + "!"
+
+def main():
+    print(greet(name="Mojo", greeting="Howdy"))
+    print(greet(greeting="Hey", name="Ada"))
+```
+
+```text
+Howdy, Mojo!
+Hey, Ada!
+```
 `raises` is part of a function's signature, so callers can see which functions can fail — the compiler enforces it in both directions.

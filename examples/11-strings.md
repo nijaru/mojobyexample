@@ -41,4 +41,23 @@ pi is about 3.14
 111
 ```
 
+The everyday text operations are there too:
+
+```mojo
+def main():
+    var csv = "a,b,c"
+    var parts = csv.split(",")
+    print(len(parts), parts[1])
+
+    var padded = "  hi  "
+    print(padded.strip() == "hi")
+
+    print(csv.find("b"), csv.replace(",", "+"))
+```
+
+```text
+3 b
+True
+2 a+b+c
+```
 `s[i]` does not exist. Character access uses keyword indices — `s[byte=i]`, `s[codepoint=i]`, and `s[grapheme=i]` — each returning a zero-copy view at the granularity you choose; wrap one in `String(...)` to own it. With UTF-8, "the first character" depends on what you mean, and Mojo makes you answer.

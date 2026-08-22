@@ -24,4 +24,21 @@ def main():
 42
 ```
 
+Types are not the only parameters — functions can take compile-time values, passed in square brackets at the call site:
+
+```mojo
+def zeros[n: Int]() -> List[Int]:
+    var out: List[Int] = []
+    for i in range(n):
+        out.append(0)
+    return out^
+
+def main():
+    var z = zeros[3]()
+    print(len(z), z[0])
+```
+
+```text
+3 0
+```
 Inside a parameterized struct, refer to your own parameters as `Self.T` — bare parameter names are not visible inside the struct body.

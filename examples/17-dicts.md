@@ -30,4 +30,20 @@ ada is here
 36 37
 ```
 
+pop(key) removes an entry and returns its value, and .get() accepts a default:
+
+```mojo
+def main() raises:
+    var ages = {"ada": 36, "grace": 45}
+
+    var removed = ages.pop("grace")
+    print(removed, len(ages), "grace" in ages)
+
+    print(ages.get("grace", 0))
+```
+
+```text
+45 1 False
+0
+```
 Keys must be both hashable and equatable, and iteration order is not guaranteed — don't rely on insertion order.

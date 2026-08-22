@@ -32,4 +32,19 @@ def main():
 [2.0, 4.0, 6.0, 8.0]
 ```
 
+A single scalar splats across every lane, and cast() converts lanes to another dtype:
+
+```mojo
+def main():
+    var v = SIMD[DType.float32, 4](2.0)
+    print(v)
+
+    var w = SIMD[DType.float64, 4](1.5, 2.5, 3.5, 4.5)
+    print(w.cast[DType.int]())
+```
+
+```text
+[2.0, 2.0, 2.0, 2.0]
+[1, 2, 3, 4]
+```
 The size parameter is a compile-time value, so the compiler picks the right vector instructions for your target — and `SIMD` composes with `comptime` and generics to build portable, tuned kernels.

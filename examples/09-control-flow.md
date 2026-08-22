@@ -25,4 +25,16 @@ negative zero positive
 sunny but cold
 ```
 
+For a value that depends on a condition, use a conditional expression:
+
+```mojo
+def main():
+    var n = 7
+    var label = "odd" if n % 2 == 1 else "even"
+    print(label)
+```
+
+```text
+odd
+```
 `and` and `or` short-circuit: the right side is only evaluated when the left side doesn't already decide the result.
